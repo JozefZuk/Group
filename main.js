@@ -3,26 +3,32 @@ const mainInput = document.querySelector("#mainInput");
 const readyNamesBox = document.querySelector("#readyNamesBox");
 
 let allName = [];
-let i;
-let nameTags = [];
-let btnId = [];
+let readyCart = [];
+let i = 0;
 
+class nameCart {
+    constructor(name, id) {
+      this.name = name;
+      this.id = id;
+    };
+  };
 
 addBtn.addEventListener("click", function(){
+    allName[i] = new  nameCart();
+    allName[i].name = document.querySelector("#mainInput").value;
+    allName[i].id = i;
 
-    var nameValue = document.querySelector("#mainInput").value;
+    if(allName[i].name == 0){
+        alert("You didn't write anything");
+    } 
 
-    if(nameValue == 0){
-        alert("You didn't write anything")
-    }
+    else{   
+        readyCart[i] = document.createElement("DIV");
+        readyCart[i].innerHTML = allName[i].name;
+        readyNamesBox.appendChild(readyCart[i]);
 
-        allName[i] = nameValue;
+        i ++;
 
-        nameTags[i] = document.createElement("DIV");
-        readyNamesBox.appendChild(nameTags[i]);
-        nameTags[i].classList.add("nameTags");
-        nameTags[i].innerHTML = allName[i]
-        
-        
+}
+});        
 
-})
