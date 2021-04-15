@@ -4,6 +4,7 @@ const readyNamesBox = document.querySelector("#readyNamesBox");
 
 let cart = [];
 let i = 0;
+let deletedCart = [];
 
 class cartValue {
     constructor(name, id, btn, box) {
@@ -15,6 +16,8 @@ class cartValue {
   };
 
 addBtn.addEventListener("click", function(){
+    
+
     cart[i] = new  cartValue();
     cart[i].name = document.querySelector("#mainInput").value;
     cart[i].id = i;
@@ -30,16 +33,22 @@ addBtn.addEventListener("click", function(){
         cart[i].box.innerHTML = cart[i].name;
         cart[i].btn.innerHTML = "Delete";
         cart[i].btn.value = i;
+        deletedCart += i;
 
         readyNamesBox.appendChild(cart[i].box);
         cart[i].box.appendChild(cart[i].btn);
 
         cart[i].btn.addEventListener("click", function(){
-            cart[this.value].box.innerHTML = '';
-            cart[this.value].name = 0;
-            i --;
-            alert(this.value);
 
+            readyNamesBox.removeChild(cart[this.value].box);
+            
+            cart[this.value].box.remove();
+        
+            deletedCart[this.value] = 'none';
+
+
+            
+            alert(deletedCart + "hello world " +  deletedCart[this.value]);
         })
         
     
